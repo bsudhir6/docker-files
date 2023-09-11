@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  apisix:
+    image: apache/apisix:latest
+    container_name: my-apisix-container
+    ports:
+      - "9080:9080"
+      - "9443:9443"
+    volumes:
+      - ./conf:/usr/local/apisix/conf
+      - ./logs:/usr/local/apisix/logs
+      - ./ssl:/usr/local/apisix/ssl
+    environment:
+      - APISIX_HTTP_PORT=9080
+      - APISIX_HTTPS_PORT=9443
+      - APISIX_CONF_DIR=/usr/local/apisix/conf
+      - APISIX_LOG_DIR=/usr/local/apisix/logs
+      - APISIX_SSL_DIR=/usr/local/apisix/ssl
+
+volumes:
+  conf:
+  logs:
+  ssl:
